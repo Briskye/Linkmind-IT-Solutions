@@ -705,7 +705,12 @@ section {
 .send-btn {
   width: 100%;
 
-  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 14px;
 
   border: none;
 
@@ -715,11 +720,16 @@ section {
 
   color: white;
 
-  font-size: 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
 
   cursor: pointer;
 
-  transition: 0.3s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.send-btn i {
+  font-size: 18px;
 }
 
 .send-btn:hover {
