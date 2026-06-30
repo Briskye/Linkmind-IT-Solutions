@@ -47,7 +47,7 @@ document.getElementById("contactForm").addEventListener("submit", async function
 
     showToast(
       'Network error occurred',
-      'error'
+      'network'
     );
 
   }

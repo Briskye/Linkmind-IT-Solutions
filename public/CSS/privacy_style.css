@@ -15,18 +15,33 @@ html {
 ========================= */
 
 :root {
+  --bg:          #0a0a0a;
+  --card:        #141414;
+  --text:        #ffffff;
+  --muted:       #bdbdbd;
+  --border:      rgba(255,255,255,0.08);
+  --accent:      #4da3ff;
+  --glow:        rgba(77,163,255,0.08);
+  --contact-box: rgba(255,255,255,0.03);
+  --back-btn-bg: rgba(255,255,255,0.04);
+  --back-btn-bd: rgba(255,255,255,0.08);
+  --navbar-bg:   rgba(10,10,10,0.85);
+  --header-p:    #bdbdbd;
+}
 
-  --bg: #0a0a0a;
-
-  --card: rgba(20,20,20,0.92);
-
-  --text: #ffffff;
-
-  --muted: #bdbdbd;
-
-  --border: rgba(255,255,255,0.08);
-
-  --accent: #4da3ff;
+body.light {
+  --bg:          #f0f4f8;
+  --card:        #ffffff;
+  --text:        #0d1117;
+  --muted:       #4a5568;
+  --border:      rgba(0,0,0,0.09);
+  --accent:      #1a7fd4;
+  --glow:        rgba(26,127,212,0.06);
+  --contact-box: rgba(0,0,0,0.03);
+  --back-btn-bg: rgba(0,0,0,0.04);
+  --back-btn-bd: rgba(0,0,0,0.10);
+  --navbar-bg:   rgba(255,255,255,0.88);
+  --header-p:    #5a6a7a;
 }
 
 
@@ -35,34 +50,19 @@ html {
 ========================= */
 
 body {
-
   background: var(--bg);
-
   color: var(--text);
-
   overflow-x: hidden;
-
   position: relative;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-
-/* Background glow */
-
 body::before {
-
   content: "";
-
   position: fixed;
-
   inset: 0;
-
-  background:
-  radial-gradient(circle at top,
-  rgba(77,163,255,0.08),
-  transparent 45%);
-
+  background: radial-gradient(circle at top, var(--glow), transparent 45%);
   pointer-events: none;
-
   z-index: -1;
 }
 
@@ -72,77 +72,65 @@ body::before {
 ========================= */
 
 .header {
-
   padding-top: 40px;
-
   padding-bottom: 20px;
-
   display: flex;
-
   justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-
-/* Entire clickable area */
-
 .btn {
-
   text-decoration: none;
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   gap: 14px;
 }
 
-
-/* Logo */
-
 .logo {
-
   height: 60px;
-
   width: auto;
-
-  transition: 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .logo:hover {
-
   transform: scale(1.03);
 }
 
-
-/* Tagline */
-
 .header p {
-
-  color: var(--muted);
-
+  color: var(--header-p);
   font-size: 0.95rem;
-
   letter-spacing: 0.5px;
-
   text-align: center;
 }
 
-@media (max-width: 768px) {
 
-  .logo {
+/* =========================
+   THEME TOGGLE
+========================= */
 
-    height: 48px;
-  }
+.theme-toggle {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text);
+  transition: border-color 0.25s ease, transform 0.25s ease, background 0.3s ease, color 0.3s ease;
+}
 
-  .header p {
-
-    font-size: 0.85rem;
-
-    padding: 0 20px;
-  }
-
+.theme-toggle:hover {
+  border-color: var(--accent);
+  transform: translateY(-50%) scale(1.1) rotate(15deg);
 }
 
 
@@ -151,31 +139,18 @@ body::before {
 ========================= */
 
 .privacy {
-
   padding: 40px 8% 120px;
 }
 
-
-/* Main document card */
-
 .privacy-container {
-
   max-width: 950px;
-
   margin: auto;
-
   background: var(--card);
-
   border: 1px solid var(--border);
-
   border-radius: 32px;
-
   padding: 70px;
-
-  backdrop-filter: blur(12px);
-
-  box-shadow:
-  0 10px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 
@@ -184,49 +159,34 @@ body::before {
 ========================= */
 
 .privacy h1 {
-
   font-size: 3rem;
-
   margin-bottom: 40px;
-
   line-height: 1.2;
+  color: var(--text);
 }
 
 .privacy h2 {
-
   margin-top: 45px;
-
   margin-bottom: 18px;
-
   font-size: 1.3rem;
-
   color: var(--accent);
 }
 
 .privacy p {
-
   color: var(--muted);
-
   line-height: 1.95;
-
   margin-bottom: 18px;
-
   font-size: 1rem;
 }
 
 .privacy ul {
-
   padding-left: 22px;
-
   margin-top: 10px;
 }
 
 .privacy li {
-
   color: var(--muted);
-
   margin-bottom: 12px;
-
   line-height: 1.8;
 }
 
@@ -236,20 +196,15 @@ body::before {
 ========================= */
 
 .contact-box {
-
   margin-top: 30px;
-
   padding: 30px;
-
   border-radius: 20px;
-
-  background: rgba(255,255,255,0.03);
-
-  border: 1px solid rgba(255,255,255,0.06);
+  background: var(--contact-box);
+  border: 1px solid var(--border);
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .contact-box p {
-
   margin-bottom: 12px;
 }
 
@@ -259,61 +214,43 @@ body::before {
 ========================= */
 
 .back-home {
-
   margin-top: 40px;
-
   text-align: center;
 }
 
 .back-home a {
-
   display: inline-block;
-
   padding: 14px 28px;
-
   border-radius: 14px;
-
-  background: rgba(255,255,255,0.04);
-
-  border: 1px solid rgba(255,255,255,0.08);
-
-  color: white;
-
+  background: var(--back-btn-bg);
+  border: 1px solid var(--back-btn-bd);
+  color: var(--text);
   text-decoration: none;
-
-  transition: 0.3s;
+  transition: transform 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
 .back-home a:hover {
-
   transform: translateY(-3px);
-
-  border-color: rgba(77,163,255,0.3);
-
+  border-color: var(--accent);
   color: var(--accent);
 }
 
 
 /* =========================
-   FADE ANIMATION
+   FADE ANIMATION (lightweight)
 ========================= */
 
 .fade {
-
   opacity: 0;
-
-  transform: translateY(25px);
-
-  transition:
-  opacity 0.8s ease,
-  transform 0.8s ease;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  will-change: opacity, transform;
 }
 
 .fade.show {
-
   opacity: 1;
-
   transform: translateY(0);
+  will-change: auto;
 }
 
 
@@ -322,37 +259,40 @@ body::before {
 ========================= */
 
 @media (max-width: 768px) {
-
   .privacy-container {
-
     padding: 35px 25px;
-
     border-radius: 22px;
   }
 
   .privacy h1 {
-
     font-size: 2rem;
   }
 
   .privacy h2 {
-
     font-size: 1.1rem;
   }
 
   .header {
-
     padding: 25px 6%;
   }
 
   .header p {
-
     display: none;
   }
 
   .logo {
-
     height: 40px;
   }
 
+  .theme-toggle {
+    right: 6%;
+  }
+}
+
+.theme-toggle {
+  color: #ffffff;
+}
+
+body.light .theme-toggle {
+  color: #0d1117;
 }
